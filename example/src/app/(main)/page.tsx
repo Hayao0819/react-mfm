@@ -1,7 +1,7 @@
 "use client"
 
 import { useEffect, useState } from "react"
-import Mfm, { useMfmConfig } from "react-mfm"
+import Mfm, { MfmRaw, useMfmConfig } from "react-mfm"
 import Auth from "~/components/Auth"
 import CustomEmoji from "~/components/CustomEmoji"
 import { basePath } from "~/consts"
@@ -38,6 +38,7 @@ hi @user@example.org ! #React #MFM
 
 export default function IndexPage() {
   const [text, setText] = useState(example)
+  const [showDetail, setShowDetail] = useState(false)
   const [mfmConfig, setMfmConfig] = useMfmConfig()
 
   useEffect(() => {
@@ -79,6 +80,12 @@ export default function IndexPage() {
         />
         <div className="box">
           <Mfm text={text} />
+        </div>
+        <span onClick={() => setShowDetail(!showDetail)} style={{ cursor: "pointer" }}>
+          {!showDetail ? "▶" : "▼"}パーサー出力
+        </span>
+        <div className={`box + ${showDetail || "hidden"}`}>
+          <MfmRaw text={text} />
         </div>
       </section>
     </>

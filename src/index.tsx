@@ -6,6 +6,7 @@ import { type CustomEmojiProps } from "./components/CustomEmoji"
 import { type HashtagProps } from "./components/Hashtag"
 import { type MentionProps } from "./components/Mention"
 import "./style.css"
+import Raw from "./Raw"
 
 ////////////////////////////////////////////////////////////////
 
@@ -24,6 +25,13 @@ export const Mfm = MfmBase(parse)
 export const MfmSimple = MfmBase(parseSimple)
 
 export default Mfm
+
+const MfmRawBase =
+  (parser: (input: string) => MfmNode[]) =>
+  ({ text }: { text: string }) => <Raw nodes={parser(text)} />
+
+export const MfmRaw = MfmRawBase(parse)
+export const MfmRawSimple = MfmRawBase(parseSimple)
 
 ////////////////////////////////////////////////////////////////
 
