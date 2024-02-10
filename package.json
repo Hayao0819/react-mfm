@@ -35,7 +35,7 @@
   "scripts": {
     "build": "tsup --minify --experimental-dts",
     "check": "tsc",
-    "dev": "tsup --watch",
+    "dev": "tsup --watch --experimental-dts",
     "fmt": "prettier -w ."
   },
   "tsup": {
